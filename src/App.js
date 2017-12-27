@@ -2,6 +2,7 @@ import React from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookView from './BookView'
+import BookShelf from './BookShelf'
 
 class BooksApp extends React.Component {
   state = {
@@ -92,42 +93,9 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Currently Reading</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                        {
-                            books
-                                .filter(book => book.status === 'reading')
-                                .map(b => <BookView book={b}/>)
-                        }
-                    </ol>
-                  </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Want to Read</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                        {
-                            books
-                                .filter(book => book.status === 'want')
-                                .map(b => <BookView book={b}/>)
-                        }
-                    </ol>
-                  </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Read</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                        {
-                            books
-                                .filter(book => book.status === 'read')
-                                .map(b => <BookView book={b}/>)
-                        }
-                    </ol>
-                  </div>
-                </div>
+                  <BookShelf title='Currently Reading' books={books.filter(book => book.status === 'reading')}/>
+                  <BookShelf title='Want to Read' books={books.filter(book => book.status === 'want')}/>
+                  <BookShelf title='Read' books={books.filter(book => book.status === 'read')}/>
               </div>
             </div>
             <div className="open-search">
