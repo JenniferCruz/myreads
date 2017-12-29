@@ -11,14 +11,16 @@ class SearchView extends React.Component {
         books: []
     };
 
-    // TODO: set books back to [] when query is emptied by user
-    // TODO: Handle errors
     updateQuery = query => {
-        this.setState({ query: query });
-        BooksAPI.search(this.state.query).then(books => {
-            if (books)
-                this.setState({ books: Books.getBooks(books)});
-        });
+        if (query.length === 0) {
+            this.setState({ query: query, books:[] });
+        } else {
+            this.setState({ query: query });
+            BooksAPI.search(this.state.query).then(books => {
+                if (books && !books.error)
+                    this.setState({ books: Books.getBooks(books)});
+            }).catch(err => console.log('errors', err));
+        }
     };
 
     render() {
