@@ -32,6 +32,7 @@ class BooksApp extends React.Component {
         );
     }
 
+    // TODO: When a book is edited, it should reflect on the backend
     render() {
       const books = this.state.books;
 
