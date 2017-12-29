@@ -5,6 +5,7 @@ import AppHeader from "./components/AppHeader";
 import SearchView from "./components/SearchView";
 import BookShelf from './components/BookShelf'
 import * as BooksAPI from "./BooksAPI";
+import * as Books from './Book'
 
 class BooksApp extends React.Component {
   state = {
@@ -26,23 +27,10 @@ class BooksApp extends React.Component {
   };
 
     componentDidMount() {
-        BooksAPI.getAll().then(books => {
-            this.setState({ books: books.map(book => { return {
-                id: book.id,
-                shelf: book.shelf,
-                image: `url("${book.imageLinks.thumbnail}")`,
-                title: book.title,
-                author: this._getAuthorsString(book.authors)
-            }}) });
-        });
+        BooksAPI.getAll().then(
+            books => this.setState({ books: Books.getBooks(books)})
+        );
     }
-
-    _getAuthorsString = authors => {
-        const rawString = `${authors.reduce((authorsString, currentAuthor) => authorsString + ", " + currentAuthor)}`;
-        const lastComma = rawString.lastIndexOf(',');
-        return lastComma === -1 ? rawString :
-            rawString.substring(0, lastComma-1) + ' & ' + rawString.substring(lastComma+2);
-    };
 
     render() {
       const books = this.state.books;
@@ -50,7 +38,7 @@ class BooksApp extends React.Component {
       return (
           <div className="app">
             {this.state.showSearchPage ? (
-              <SearchView app={this}/>
+              <SearchView app={this} onChangeBookShelf={this.updateBookShelf} />
             ) : (
               <div className="list-books">
                 <AppHeader/>
