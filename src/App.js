@@ -20,16 +20,16 @@ class BooksApp extends React.Component {
 
   updateBookShelf = (book, newShelf) => {
       let books = this.state.books;
-      const i = books.findIndex(b => b.isbn === book.isbn);
-      books[i].status = newShelf;
+      const i = books.findIndex(b => b.id === book.id);
+      books[i].shelf = newShelf;
       this.setState({books: books});
   };
 
     componentDidMount() {
         BooksAPI.getAll().then(books => {
             this.setState({ books: books.map(book => { return {
-                isbn: book.id,
-                status: this._getShelf(book.shelf),
+                id: book.id,
+                shelf: book.shelf,
                 image: `url("${book.imageLinks.thumbnail}")`,
                 title: book.title,
                 author: this._getAuthorsString(book.authors)
@@ -44,13 +44,6 @@ class BooksApp extends React.Component {
             rawString.substring(0, lastComma-1) + ' & ' + rawString.substring(lastComma+2);
     };
 
-    _getShelf =  shelf => {
-        if (shelf === 'currentlyReading') return 'reading';
-        if (shelf === 'wantToRead') return 'want';
-        return 'read';
-    };
-
-
     render() {
       const books = this.state.books;
 
@@ -63,9 +56,9 @@ class BooksApp extends React.Component {
                 <AppHeader/>
                 <div className="list-books-content">
                   <div>
-                      <BookShelf onChangeBookShelf={this.updateBookShelf} title='Currently Reading' books={books.filter(book => book.status === 'reading')}/>
-                      <BookShelf onChangeBookShelf={this.updateBookShelf} title='Want to Read' books={books.filter(book => book.status === 'want')}/>
-                      <BookShelf onChangeBookShelf={this.updateBookShelf} title='Read' books={books.filter(book => book.status === 'read')}/>
+                      <BookShelf onChangeBookShelf={this.updateBookShelf} title='Currently Reading' books={books.filter(book => book.shelf === 'currentlyReading')}/>
+                      <BookShelf onChangeBookShelf={this.updateBookShelf} title='Want to Read' books={books.filter(book => book.shelf === 'wantToRead')}/>
+                      <BookShelf onChangeBookShelf={this.updateBookShelf} title='Read' books={books.filter(book => book.shelf === 'read')}/>
                   </div>
                 </div>
                 <div className="open-search">
