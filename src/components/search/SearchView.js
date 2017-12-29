@@ -1,8 +1,8 @@
 import React from 'react'
-import MessageNotFound from './search/MessageNotFound'
-import * as BooksAPI from '../BooksAPI'
-import * as Books from '../Book'
-import SearchResults from "./search/SearchResults";
+import MessageNotFound from './MessageNotFound'
+import * as BooksAPI from '../../BooksAPI'
+import * as Books from '../../Book'
+import BookListing from "../BookListing";
 
 class SearchView extends React.Component {
     state = {
@@ -24,7 +24,7 @@ class SearchView extends React.Component {
         // TODO: Style sorry message and add list of available categories. Can you read it from the md?
         let results = this.state.books.length === 0 ?
             <MessageNotFound searchQuery={this.state.query}/> :
-            <SearchResults books={this.state.books} onChangeBookShelf={this.props.onChangeBookShelf}/>;
+            <BookListing books={this.state.books} onChangeBookShelf={this.props.onChangeBookShelf}/>;
 
         return (<div className="search-books">
             <div className="search-books-bar">

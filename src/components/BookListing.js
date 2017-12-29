@@ -1,7 +1,7 @@
 import React from 'react'
-import BookView from '../BookView'
+import BookView from './BookView'
 
-function SearchResults(props) {
+function BookListing(props) {
     return (
         <ol className="books-grid">
             {
@@ -15,4 +15,4 @@ function SearchResults(props) {
 
 }
 
-export default SearchResults;
+export default BookListing;

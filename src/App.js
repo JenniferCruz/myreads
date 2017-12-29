@@ -2,7 +2,7 @@ import React from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
 import AppHeader from "./components/AppHeader";
-import SearchView from "./components/SearchView";
+import SearchView from "./components/search/SearchView";
 import BookShelf from './components/BookShelf'
 import * as BooksAPI from "./BooksAPI";
 import * as Books from './Book'

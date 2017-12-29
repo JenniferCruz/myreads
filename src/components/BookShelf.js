@@ -1,5 +1,5 @@
 import React from 'react'
-import BookView from './BookView'
+import BookListing from './BookListing'
 
 class BookShelf extends React.Component {
     render() {
@@ -8,11 +8,7 @@ class BookShelf extends React.Component {
         return (<div className="bookshelf">
             <h2 className="bookshelf-title">{this.props.title}</h2>
             <div className="bookshelf-books">
-                <ol className="books-grid">
-                    {
-                        books.map(b => <li key={b.id}><BookView book={b} onChangeBookShelf={this.props.onChangeBookShelf} /></li>)
-                    }
-                </ol>
+                <BookListing books={books} onChangeBookShelf={this.props.onChangeBookShelf}/>
             </div>
         </div>);
     }
