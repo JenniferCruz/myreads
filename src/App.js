@@ -24,6 +24,7 @@ class BooksApp extends React.Component {
       const i = books.findIndex(b => b.id === book.id);
       books[i].shelf = newShelf;
       this.setState({books: books});
+      BooksAPI.update(book, newShelf);
   };
 
     componentDidMount() {
@@ -32,7 +33,6 @@ class BooksApp extends React.Component {
         );
     }
 
-    // TODO: When a book is edited, it should reflect on the backend
     render() {
       const books = this.state.books;
 
