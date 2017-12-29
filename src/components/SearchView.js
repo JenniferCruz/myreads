@@ -1,7 +1,8 @@
 import React from 'react'
-import BookView from './BookView'
+import MessageNotFound from './search/MessageNotFound'
 import * as BooksAPI from '../BooksAPI'
 import * as Books from '../Book'
+import SearchResults from "./search/SearchResults";
 
 class SearchView extends React.Component {
     state = {
@@ -9,7 +10,8 @@ class SearchView extends React.Component {
         books: []
     };
 
-    // TODO: Bug: this.state.query is not getting the first character
+    // TODO: set books back to [] when query is emptied by user
+    // TODO: Handle errors
     updateQuery = query => {
         this.setState({ query: query });
         BooksAPI.search(this.state.query).then(books => {
@@ -20,18 +22,9 @@ class SearchView extends React.Component {
 
     render() {
         // TODO: Style sorry message and add list of available categories. Can you read it from the md?
-        let results = !this.state.query ? '' :
-            <div className='search-no-results'>
-                <h2>No results for {this.state.query}</h2>
-                <p>The term you entered did not bring up any results. Try using looking for something within the following categories</p>
-            </div>;
-
-        if(this.state.query && this.state.books && this.state.books.length > 0)
-            results = <ol className="books-grid">
-                {
-                    this.state.books.map(b => <li key={b.id}><BookView book={b} onChangeBookShelf={this.props.onChangeBookShelf} /></li>)
-                }
-            </ol>;
+        let results = this.state.books.length === 0 ?
+            <MessageNotFound searchQuery={this.state.query}/> :
+            <SearchResults books={this.state.books} onChangeBookShelf={this.props.onChangeBookShelf}/>;
 
         return (<div className="search-books">
             <div className="search-books-bar">
