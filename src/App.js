@@ -10,12 +10,6 @@ import * as Books from './Book'
 
 class BooksApp extends React.Component {
     state = {
-        /**
-         * TODO: Instead of using this state variable to keep track of which page
-         * we're on, use the URL in the browser's address bar. This will ensure that
-         * users can use the browser's back and forward buttons to navigate between
-         * pages, as well as provide a good URL they can bookmark and share.
-         */
           books: []
     };
 
@@ -59,8 +53,11 @@ class BooksApp extends React.Component {
                         </div>
                     )}/>
 
-                    <Route path='/search' render={() => (
-                        <SearchView app={this} onChangeBookShelf={this.updateBook} />
+                    <Route path='/search' render={({ history }) => (
+                        <SearchView app={this} onChangeBookShelf={(book, newShelf) => {
+                            this.updateBook(book, newShelf);
+                            history.push('/'); // TODO: do this only if book is actually new - refactor to have 2 diff functions for add/edit
+                        }} />
                     )}/>
                 </div>
             </BrowserRouter>
