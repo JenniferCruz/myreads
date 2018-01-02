@@ -19,12 +19,22 @@ class BooksApp extends React.Component {
           books: []
     };
 
-    updateBookShelf = (book, newShelf) => {
+    updateBook = (book, newShelf) => {
+        const updatedBooks = this._updateBookShelf(book, newShelf);
+        this.setState({books: updatedBooks});
+        BooksAPI.update(book, newShelf);
+    };
+
+    _updateBookShelf = (book, newShelf) => {
         let books = this.state.books;
         const i = books.findIndex(b => b.id === book.id);
-        books[i].shelf = newShelf;
-        this.setState({books: books});
-        BooksAPI.update(book, newShelf);
+        if (i >= 0)
+            books[i].shelf = newShelf;
+        else {
+            book.shelf = newShelf;
+            books = books.concat([book]);
+        }
+        return books;
     };
 
     componentDidMount() {
@@ -39,11 +49,11 @@ class BooksApp extends React.Component {
         return (
             <div className="app">
                 {this.state.showSearchPage ? (
-                    <SearchView app={this} onChangeBookShelf={this.updateBookShelf} />
+                    <SearchView app={this} onChangeBookShelf={this.updateBook} />
                 ) : (
                     <div className="list-books">
                         <AppHeader/>
-                        <ShelfsListing onChangeBookShelf={this.updateBookShelf} books={books}/>
+                        <ShelfsListing onChangeBookShelf={this.updateBook} books={books}/>
                         <div className="open-search">
                             <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
                         </div>
