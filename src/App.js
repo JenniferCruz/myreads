@@ -22,9 +22,12 @@ class BooksApp extends React.Component {
     /* returns an array containing all user's books,
     in which 'book' is assigned to its 'newShelf' */
     updateBookShelf = (book, newShelf) => {
-        book.shelf = newShelf;
         let books = this.state.books;
-        if (books.findIndex(b => b.id === book.id) < 0)
+        const i = books.findIndex(b => b.id === book.id);
+        book.shelf = newShelf;
+        if (i >= 0)
+            books[i] = book;
+        else
             books = books.concat([book]);
         return books;
     };
@@ -53,6 +56,7 @@ class BooksApp extends React.Component {
 
                     <Route path='/search' render={({ history }) => (
                         <SearchView app={this} onChangeBookShelf={(book, newShelf) => {
+                            this.updateBook(book, newShelf);
                             if (window.location.pathname.includes('search'))
                                 history.push('/');
                         }} />
