@@ -13,13 +13,10 @@ class BooksApp extends React.Component {
           books: []
     };
 
-    /* returns true ff the book is added new to books, false otherwise */
     updateBook = (book, newShelf) => {
         const updatedBooks = this.updateBookShelf(book, newShelf);
-        const isNewBook = updatedBooks.length !== this.state.books.length;
         this.setState({books: updatedBooks});
         BooksAPI.update(book, newShelf);
-        return isNewBook;
     };
 
     /* returns an array containing all user's books,
@@ -56,8 +53,7 @@ class BooksApp extends React.Component {
 
                     <Route path='/search' render={({ history }) => (
                         <SearchView app={this} onChangeBookShelf={(book, newShelf) => {
-                            const isNewBook = this.updateBook(book, newShelf);
-                            if (isNewBook)
+                            if (window.location.pathname.includes('search'))
                                 history.push('/');
                         }} />
                     )}/>
