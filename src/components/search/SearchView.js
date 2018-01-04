@@ -5,12 +5,6 @@ import * as Books from '../../Book'
 import BookListing from "../BookListing";
 import SearchBar from "./SearchBar";
 
-/**
- * TODO: Address console warning:
- *
- * Warning: setState(...): Can only update a mounted or mounting component. This usually means you called setState() on an unmounted component. This is a no-op. Please check the code for the SearchView component.
- * */
-
 // TODO: Change does not seem to change after a certain amount of typing
 class SearchView extends React.Component {
     state = {
@@ -31,7 +25,6 @@ class SearchView extends React.Component {
     };
 
     render() {
-        // TODO: Style sorry message and add list of available categories. Can you read it from the md?
         let results = this.state.booksResults.length === 0 ?
             <MessageNotFound searchQuery={this.state.query}/> :
             <BookListing books={this.state.booksResults} onChangeBookShelf={this.props.onChangeBookShelf}/>;
