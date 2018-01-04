@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-// import * as BooksAPI from './BooksAPI'
 import './App.css'
 import AppHeader from "./components/AppHeader";
 import ShelfsListing from "./components/ShelfsListing";
@@ -9,25 +8,27 @@ import * as BooksAPI from "./BooksAPI";
 import * as Books from './Book'
 
 class BooksApp extends React.Component {
+
     state = {
           books: []
     };
 
+    /* returns true ff the book is added new to books, false otherwise */
     updateBook = (book, newShelf) => {
-        const updatedBooks = this._updateBookShelf(book, newShelf);
+        const updatedBooks = this.updateBookShelf(book, newShelf);
+        const isNewBook = updatedBooks.length !== this.state.books.length;
         this.setState({books: updatedBooks});
         BooksAPI.update(book, newShelf);
+        return isNewBook;
     };
 
-    _updateBookShelf = (book, newShelf) => {
+    /* returns an array containing all user's books,
+    in which 'book' is assigned to its 'newShelf' */
+    updateBookShelf = (book, newShelf) => {
+        book.shelf = newShelf;
         let books = this.state.books;
-        const i = books.findIndex(b => b.id === book.id);
-        if (i >= 0)
-            books[i].shelf = newShelf;
-        else {
-            book.shelf = newShelf;
+        if (books.findIndex(b => b.id === book.id) < 0)
             books = books.concat([book]);
-        }
         return books;
     };
 
@@ -55,8 +56,9 @@ class BooksApp extends React.Component {
 
                     <Route path='/search' render={({ history }) => (
                         <SearchView app={this} onChangeBookShelf={(book, newShelf) => {
-                            this.updateBook(book, newShelf);
-                            history.push('/'); // TODO: do this only if book is actually new - refactor to have 2 diff functions for add/edit
+                            const isNewBook = this.updateBook(book, newShelf);
+                            if (isNewBook)
+                                history.push('/');
                         }} />
                     )}/>
                 </div>
