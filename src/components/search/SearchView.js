@@ -5,7 +5,6 @@ import * as Books from '../../Book'
 import BookListing from "../BookListing";
 import SearchBar from "./SearchBar";
 
-// TODO: Change does not seem to change after a certain amount of typing
 class SearchView extends React.Component {
     state = {
         query: '',
@@ -20,7 +19,7 @@ class SearchView extends React.Component {
             BooksAPI.search(this.state.query).then(books => {
                 if (books && !books.error)
                     this.setState({ booksResults: Books.getBooks(books)});
-            }).catch(err => console.log('errors', err));
+            });
         }
     };
 

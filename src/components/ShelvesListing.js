@@ -1,7 +1,7 @@
 import React from 'react'
 import BookShelf from './BookShelf'
 
-function ShelfsListing(props) {
+function ShelvesListing(props) {
     const {books, onChangeBookShelf} = props;
 
     return (
@@ -21,4 +21,4 @@ function ShelfsListing(props) {
     );
 }
 
-export default ShelfsListing;
+export default ShelvesListing;

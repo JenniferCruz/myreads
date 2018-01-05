@@ -7,7 +7,7 @@ function MessageNotFound(props) {
                 <h2>No results for {props.searchQuery}</h2>
                 <p>
                     The term you entered did not bring up any results.
-                    Try using looking for something within the following categories
+                    Try using looking for something within the following categories:
                 </p>
                 <p className='highlight-paragraph'>
                     'Android', 'Art', 'Artificial Intelligence', 'Astronomy', 'Austen', 'Baseball', 'Basketball',
