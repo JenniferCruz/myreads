@@ -16,7 +16,7 @@ class SearchView extends React.Component {
             this.setState({ query: query, booksResults:[] });
         } else {
             this.setState({ query: query });
-            BooksAPI.search(this.state.query).then(books => {
+            BooksAPI.search(query).then(books => {
                 if (books && !books.error) {
                     const savedBooks = this.props.app.state.books;
                     // TODO: Can you refactor this impl to make it more efficient?
