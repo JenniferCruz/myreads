@@ -5,15 +5,15 @@ function ShelvesListing(props) {
     const {books, onChangeBookShelf} = props;
 
     return (
-        <div className="list-books-content">
+        <div id="shelves-listing" className="list-books-content">
             <div>
-                <BookShelf title='Currently Reading'
+                <BookShelf id='currently-reading-shelf' title='Currently Reading'
                     onChangeBookShelf={onChangeBookShelf}
                     books={books.filter(book => book.shelf === 'currentlyReading')}/>
-                <BookShelf title='Want to Read'
+                <BookShelf id='want-to-read-shelf' title='Want to Read'
                     onChangeBookShelf={onChangeBookShelf}
                     books={books.filter(book => book.shelf === 'wantToRead')}/>
-                <BookShelf title='Read'
+                <BookShelf id='read-shelf' title='Read'
                     onChangeBookShelf={onChangeBookShelf}
                     books={books.filter(book => book.shelf === 'read')}/>
             </div>
