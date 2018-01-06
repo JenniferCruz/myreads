@@ -6,7 +6,6 @@ class BookShelf extends React.Component {
         const books = this.props.books;
 
         return (<div className="bookshelf">
-            <h2 className="bookshelf-title">{this.props.title}</h2>
             <div className="bookshelf-books">
                 <BookListing books={books} onChangeBookShelf={this.props.onChangeBookShelf}/>
             </div>

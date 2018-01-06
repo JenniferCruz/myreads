@@ -1,7 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import './App.css'
-import AppHeader from "./components/AppHeader";
 import ShelvesListing from "./components/ShelvesListing";
 import SearchView from "./components/search/SearchView";
 import * as BooksAPI from "./BooksAPI";
@@ -46,7 +45,6 @@ class BooksApp extends React.Component {
                 <div className="app">
                     <Route exact path='/' render={() => (
                         <div className="list-books">
-                            <AppHeader/>
                             <ShelvesListing onChangeBookShelf={this.updateBook} books={books}/>
                             <div className="open-search">
                                 <Link to='/search'>Add book</Link>

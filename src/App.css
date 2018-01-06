@@ -183,3 +183,35 @@ body, .app {
   border-left: 1.5px solid lightgray;
   padding-left: 19px;
 }
+
+ul.tabs-menu {
+  list-style: none;
+  font-size: 22px;
+  padding-bottom: 29px;
+  padding-top: 29px;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+}
+
+li.tabs-menu-item {
+  display: inline;
+  padding: 33px;
+}
+
+li.tabs-menu-item.is-active {
+  background-color: #60ac5d;
+}
+
+.tabs {
+  margin-left: 20px;
+}
+
+.list-books {
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.app-name {
+  padding-left: 22px;
+}
