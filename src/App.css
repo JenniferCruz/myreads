@@ -212,7 +212,6 @@ li.tabs-menu-item.is-active {
   width: 800px;
   margin-left: auto;
   margin-right: auto;
-  overflow: hidden;
 }
 
 .app-name {

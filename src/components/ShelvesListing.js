@@ -11,7 +11,7 @@ function ShelvesListing(props) {
         <div className='app-name'>
             <h1>MyReads</h1>
         </div>
-        <Tabs tabActive={2} onBeforeChange={()=>{}} onAfterChange={()=>{}}>
+        <Tabs tabActive={1} onBeforeChange={()=>{}} onAfterChange={()=>{}}>
             <Tabs.Panel title='Currently Reading'>
                 <BookShelf onChangeBookShelf={onChangeBookShelf}
                            books={books.filter(book => book.shelf === 'currentlyReading')}/>
