@@ -192,6 +192,7 @@ ul.tabs-menu {
   padding-bottom: 31px;
   margin-top: 29px;
   border-bottom: 1px solid;
+  cursor: pointer;
 }
 
 li.tabs-menu-item {
