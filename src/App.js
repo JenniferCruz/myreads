@@ -42,7 +42,7 @@ class BooksApp extends React.Component {
                     )}/>
 
                     <Route path="/search" render={({ history }) => (
-                        <SearchView app={this} onChangeBookShelf={(book, newShelf) => {
+                        <SearchView books={this.state.books} onChangeBookShelf={(book, newShelf) => {
                             this.updateBook(book, newShelf);
                         }} />
                     )}/>

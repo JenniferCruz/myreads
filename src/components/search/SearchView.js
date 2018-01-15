@@ -18,9 +18,8 @@ class SearchView extends React.Component {
             this.setState({ query: query });
             BooksAPI.search(query).then(books => {
                 if (books && !books.error) {
-                    const savedBooks = this.props.app.state.books;
-                    this.setShelves(books, savedBooks);
-                    this.setState({ booksResults: Books.getBooks(books)});
+                    this.setShelves(books, this.props.books);
+                    this.setState({ booksResults: Books.getBooksArray(books)});
                 }
             });
         }
@@ -41,7 +40,7 @@ class SearchView extends React.Component {
 
         return (
             <div className="search-books">
-                <SearchBar app={this.props.app} query={this.state.query} updateQuery={this.updateQuery} />
+                <SearchBar query={this.state.query} updateQuery={this.updateQuery} />
                 <div className="search-books-results">{results}</div>
             </div>
         );

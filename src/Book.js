@@ -2,7 +2,7 @@ const _getBookImageUrl = book => book.imageLinks ?
     `url("${book.imageLinks.thumbnail}")` :
     'url("img_not_available.png")';
 
-export const getBooks = books => books.map(book => {
+export const getBooksArray = books => books.map(book => {
     book.image = _getBookImageUrl(book);
     return book;
 });
