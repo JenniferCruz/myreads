@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import './App.css'
-import ShelvesListing from "./components/ShelvesListing";
-import SearchView from "./components/search/SearchView";
-import * as BooksAPI from "./BooksAPI";
-import * as Books from './Book'
+import './App.css';
+import ShelvesListing from './components/ShelvesListing';
+import SearchView from './components/search/SearchView';
+import * as BooksAPI from './BooksAPI';
+import * as Books from './Book';
 
 class BooksApp extends React.Component {
 
@@ -32,16 +32,16 @@ class BooksApp extends React.Component {
         return (
             <BrowserRouter>
                 <div className="app">
-                    <Route exact path='/' render={() => (
+                    <Route exact path="/" render={() => (
                         <div className="list-books">
                             <ShelvesListing onChangeBookShelf={this.updateBook} books={Object.values(books)}/>
                             <div className="open-search">
-                                <Link to='/search'>Add book</Link>
+                                <Link to="/search">Add book</Link>
                             </div>
                         </div>
                     )}/>
 
-                    <Route path='/search' render={({ history }) => (
+                    <Route path="/search" render={({ history }) => (
                         <SearchView app={this} onChangeBookShelf={(book, newShelf) => {
                             this.updateBook(book, newShelf);
                         }} />
@@ -52,4 +52,4 @@ class BooksApp extends React.Component {
     }
 }
 
-export default BooksApp
+export default BooksApp;

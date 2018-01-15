@@ -2,8 +2,8 @@ import React from 'react'
 import MessageNotFound from './MessageNotFound'
 import * as BooksAPI from '../../BooksAPI'
 import * as Books from '../../Book'
-import BookListing from "../BookListing";
-import SearchBar from "./SearchBar";
+import BookListing from '../BookListing';
+import SearchBar from './SearchBar';
 
 class SearchView extends React.Component {
     state = {
@@ -19,16 +19,20 @@ class SearchView extends React.Component {
             BooksAPI.search(query).then(books => {
                 if (books && !books.error) {
                     const savedBooks = this.props.app.state.books;
-                    books.forEach(book => {
-                        const savedBook = savedBooks[book.id];
-                        if (savedBook)
-                            book.shelf = savedBook.shelf;
-                    });
+                    this.setShelves(books, savedBooks);
                     this.setState({ booksResults: Books.getBooks(books)});
                 }
             });
         }
     };
+
+    setShelves(searchedBooks, existingBooks) {
+        searchedBooks.forEach(book => {
+            const b = existingBooks[book.id];
+            if (b)
+                book.shelf = b.shelf;
+        });
+    }
 
     render() {
         let results = this.state.booksResults.length === 0 ?

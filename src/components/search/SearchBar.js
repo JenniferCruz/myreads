@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function SearchBar(props) {
     return (
         <div className="search-books-bar">
-            <Link to='/' className='close-search' />
+            <Link to="/" className="close-search" />
             <div className="search-books-input-wrapper">
                 {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.

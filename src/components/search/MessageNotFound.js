@@ -1,7 +1,7 @@
 import React from 'react';
 
 function MessageNotFound(props) {
-    return !props.searchQuery?
+    return !props.searchQuery ?
         (<div></div>) :
         (<div className='search-no-results'>
                 <h2>No results for {props.searchQuery}</h2>

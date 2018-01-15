@@ -1,5 +1,5 @@
-import React from 'react'
-import BookView from './BookView'
+import React from 'react';
+import BookView from './BookView';
 
 function BookListing(props) {
     return (
@@ -12,7 +12,6 @@ function BookListing(props) {
             }
         </ol>
     );
-
 }
 
 export default BookListing;
