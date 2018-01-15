@@ -7,12 +7,18 @@ const _getAuthorsString = authors => {
         rawString.substring(0, lastComma-1) + ' & ' + rawString.substring(lastComma+2);
 };
 
+const _getBookImageUrl = book => `url("${book.imageLinks.thumbnail}")`;
+
 export const getBooks = books => books.map(book => {
-    return {
-        id: book.id,
-        shelf: book.shelf,
-        image: `url("${book.imageLinks.thumbnail}")`,
-        title: book.title,
-        author: _getAuthorsString(book.authors)
-    }
+    book.image = _getBookImageUrl(book);
+    return book;
 }) ;
+
+export const getBooksMap = books => {
+    const booksMap = {};
+    books.forEach(book => {
+        book.image = _getBookImageUrl(book);
+        booksMap[book.id] = book;
+    });
+    return booksMap;
+};

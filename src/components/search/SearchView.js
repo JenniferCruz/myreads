@@ -19,11 +19,10 @@ class SearchView extends React.Component {
             BooksAPI.search(query).then(books => {
                 if (books && !books.error) {
                     const savedBooks = this.props.app.state.books;
-                    // TODO: Can you refactor this impl to make it more efficient?
                     books.forEach(book => {
-                        const i = savedBooks.findIndex(b => b.id === book.id);
-                        if (i >= 0)
-                            book.shelf = savedBooks[i].shelf;
+                        const savedBook = savedBooks[book.id];
+                        if (savedBook)
+                            book.shelf = savedBook.shelf;
                     });
                     this.setState({ booksResults: Books.getBooks(books)});
                 }
