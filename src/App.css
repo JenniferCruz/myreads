@@ -225,3 +225,11 @@ li.tabs-menu-item.is-active {
 .app-name h1 {
   margin-top: -4px;
 }
+
+.empty-shelf-message {
+  margin-top: 80px;
+}
+
+.empty-shelf-message a {
+  color: #60ac5d;
+}

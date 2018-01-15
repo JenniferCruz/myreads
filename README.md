@@ -14,7 +14,7 @@ To install and launch the project:
 
 ## Provided Backend Server
 
-[`BooksAPI.js`](src/BooksAPI.js) contains the methods needed to perform necessary operations on the backend:
+The Backend server ([`BooksAPI.js`](src/BooksAPI.js)) was provided by Udacity and it contains the methods needed to perform necessary operations on the backend:
 
 * [`getAll`](#getall)
 * [`update`](#update)

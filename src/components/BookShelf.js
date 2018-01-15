@@ -7,7 +7,11 @@ class BookShelf extends React.Component {
 
         return (<div className="bookshelf">
             <div className="bookshelf-books">
-                <BookListing books={books} onChangeBookShelf={this.props.onChangeBookShelf}/>
+                {
+                    books.length === 0 ?
+                        <div>{this.props.messageOnEmptyShelf}</div> :
+                        <BookListing books={books} onChangeBookShelf={this.props.onChangeBookShelf}/>
+                }
             </div>
         </div>);
     }
