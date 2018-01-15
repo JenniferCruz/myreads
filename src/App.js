@@ -44,8 +44,6 @@ class BooksApp extends React.Component {
                     <Route path='/search' render={({ history }) => (
                         <SearchView app={this} onChangeBookShelf={(book, newShelf) => {
                             this.updateBook(book, newShelf);
-                            if (window.location.pathname.includes('search'))
-                                history.push('/');
                         }} />
                     )}/>
                 </div>
