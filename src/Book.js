@@ -7,7 +7,7 @@ const _getAuthorsString = authors => {
         rawString.substring(0, lastComma-1) + ' & ' + rawString.substring(lastComma+2);
 };
 
-const _getBookImageUrl = book => `url("${book.imageLinks.thumbnail}")`;
+const _getBookImageUrl = book => `url("${book.imageLinks ? book.imageLinks.thumbnail : ''}")`;
 
 export const getBooks = books => books.map(book => {
     book.image = _getBookImageUrl(book);
